@@ -20,7 +20,7 @@ const product = (product, index) => {
         });
         return (
             <a key={key} href={link} className={buttonClass}>
-                {service}
+                <i className="fas fa-hands-helping" /> Ver no Mercado Livre
             </a>
         );
     };

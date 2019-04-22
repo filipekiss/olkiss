@@ -40,7 +40,6 @@
     }
 }
 
-
 /// Block Element
 /// @access public
 /// @param {String} $element - Element's name
@@ -66,11 +65,8 @@ $color_secondary: #6a89a1;
 $color_accent: #333268;
 $color_olx: #9027b0;
 $color_ml: #1259c3;
-$color_enjoei: #f05b78;
+$color_accent_secondary: #f05b78;
 
 $services: (
-    olx: $color_olx,
     ml: $color_ml,
-    enjoei: $color_enjoei,
 );
-
