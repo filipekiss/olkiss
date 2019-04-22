@@ -1,0 +1,39 @@
+{
+    "name": "@filipekiss/olkiss",
+    "version": "0.0.0",
+    "description": "Kiss e Carol vendendo tudo",
+    "scripts": {
+        "test": "echo \"Error: no test specified\" && exit 1",
+        "dev": "parcel src/index.html",
+        "build": "parcel build src/index.html --out-dir public --public-url /olkiss/"
+    },
+    "repository": {
+        "type": "git",
+        "url": "git+https://github.com/filipekiss/night-hawk.git"
+    },
+    "author": {
+        "name": "Filipe Kiss",
+        "url": "https://github.com/filipekiss",
+        "email": "hello@filipekiss.com.br"
+    },
+    "license": "MIT",
+    "bugs": {
+        "url": "https://github.com/filipekiss/olkiss/issues"
+    },
+    "homepage": "https://github.com/filipekiss/olkiss#readme",
+    "devDependencies": {
+        "parcel": "^1.12.3",
+        "sass": "^1.18.0",
+        "ts-node": "^8.0.3",
+        "typescript": "^3.4.3",
+        "typescript-styled-plugin": "^0.14.0"
+    },
+    "dependencies": {
+        "@sindresorhus/class-names": "^1.0.0",
+        "@types/node": "^11.13.4",
+        "posthtml-include": "^1.2.0",
+        "react": "^16.8.6",
+        "react-dom": "^16.8.6",
+        "styled-components": "^4.2.0"
+    }
+}
