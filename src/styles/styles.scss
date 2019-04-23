@@ -168,6 +168,7 @@ header {
             opacity: 0.8;
             flex-grow: 0;
             padding: 1em;
+            background-color: $color_ml;
 
             @include for-desktop-up {
                 flex-grow: 1;
@@ -181,12 +182,6 @@ header {
 
             &:hover {
                 opacity: 1;
-            }
-
-            @each $service, $color in $services {
-                &.#{$service} {
-                    background-color: $color;
-                }
             }
 
             &:last-of-type {

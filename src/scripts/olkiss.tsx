@@ -1,58 +1,34 @@
 import * as React from 'react';
 import ReactDOM from 'react-dom';
-import classNames from '@sindresorhus/class-names';
-import soldImage from '../images/vendido.png';
+import Product from './components/Product';
+import axios from 'axios';
+import settings from '../data/settings';
+import noImage from '../images/no-image.png';
 
-import products from '../data/products.json';
-
-const product = (product, index) => {
-    const productClass = classNames('product', {
-        olx: product.links.olx,
-        ml: product.links.ml,
-        enjoei: product.links.enjoei,
-        sold: product.sold,
-    });
-
-    const outButton = (link, service, disabled = false) => {
-        const key = Math.random();
-        const buttonClass = classNames(service, {
-            disabled: disabled,
-        });
-        return (
-            <a key={key} href={link} className={buttonClass}>
-                <i className="fas fa-hands-helping" /> Ver no Mercado Livre
-            </a>
-        );
-    };
-
-    let sold = '';
-
-    if (product.sold) {
-        sold = <img className="sold-stamp" src={soldImage} />;
+function renderProduct(product, index) {
+    if (this.isFallback) {
+        product.image.url = noImage;
+    } else {
+        product.image.url = `${settings.strapiUrl}/${product.image.url}`;
     }
+    return <Product key={`product-${index}`} product={product} />;
+}
 
-    return (
-        <div key={`product-${index}`} className={productClass}>
-            <div className="info">
-                <div className="product__image">
-                    <img
-                        className="image"
-                        src={product.cover}
-                        alt={product.name}
-                    />
-                    {sold}
-                </div>
-                <div className="product__name">{product.name}</div>
-            </div>
-            <div className="product__links">
-                {Object.entries(product.links).map(([service, link]) => {
-                    return outButton(link, service, product.sold);
-                })}
-            </div>
-        </div>
-    );
-};
+const targetElement = document.getElementById('app');
 
-const app = products.map(product);
-
-ReactDOM.render(app, document.getElementById('app'));
+axios
+    .get(`${settings.strapiUrl}/products`, {timeout: 2500})
+    .then(function loadProducts(response) {
+        const app = response.data.map(renderProduct, {isFallback: false});
+        ReactDOM.render(app, targetElement);
+    })
+    .catch(function(error) {
+        console.error(
+            'An error ocurred when trying to fetch the product list from ${strapiUrl}'
+        );
+        console.warn('Falling back to static data');
+        import('../data/products.json').then((products) => {
+            const app = products.default.map(renderProduct, {isFallback: true});
+            ReactDOM.render(app, targetElement);
+        });
+    });
