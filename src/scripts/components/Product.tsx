@@ -8,11 +8,24 @@ const outButton = (link, disabled = false) => {
         disabled: disabled,
     });
     return (
-        <a key={key} href={link} className={buttonClass}>
-            <i className="fas fa-hands-helping" /> Ver no Mercado Livre
+        <a key={key} href={link} className={buttonClass} target="_blank" rel="noopener noreferrer" title="Abre numa nova aba">
+            <i className="fas fa-hands-helping" /> Ver no Mercado Livre <i className="fas fa-external-link-alt"></i>
         </a>
     );
 };
+
+const productPrice = (price) {
+    if (price) {
+        const centsPrice = String(price).substr(-2);
+        const intPrice = String(price).substr(0, String(price).length - 2);
+        let centsElem = '';
+        if (Number(centsPrice) > 0) {
+            centsElem = <small>{centsPrice}</small>
+        }
+        return <div className="product__price">{intPrice}{centsElem}</div>
+    }
+    return;
+}
 
 export default function Product(props) {
     const {product} = props;
@@ -36,7 +49,10 @@ export default function Product(props) {
                     <img className="image" src={imageUrl} alt={product.title} />
                     {sold}
                 </div>
-                <div className="product__name">{product.title}</div>
+                <div className="product__details">
+                    <div className="product__name">{product.title}</div>
+                    {productPrice(product.price)}
+                </div>
             </div>
             <div className="product__links">
                 {outButton(product.url, product.sold)}

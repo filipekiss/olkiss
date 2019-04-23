@@ -1,0 +1,25 @@
+{
+    "id": 4,
+    "title": "Estante Preta Tok Stok Dobr\u00e1vel ",
+    "url": "https://produto.mercadolivre.com.br/MLB-1217121897-estante-preta-tok-stok-dobravel-_JM?quantity=1&variation=35728987807",
+    "description": null,
+    "price": 35000,
+    "sold": null,
+    "created_at": 1556041598433,
+    "updated_at": 1556041598448,
+    "image": {
+        "id": 4,
+        "name": "estante-preta-tok-stok-dobravel-D_NQ_NP_995195-MLB30046536165_042019-F.jpg",
+        "hash": "e832dcfcd27548e3b5cdb6677e32d76a",
+        "sha256": "BDR_6ueOkneZyH0mprTu1xQ9sDbMrM-E-NelBSNp4Vo",
+        "ext": ".jpg",
+        "mime": "image/jpeg",
+        "size": "213.38",
+        "url": "/uploads/e832dcfcd27548e3b5cdb6677e32d76a.jpg",
+        "provider": "local",
+        "public_id": null,
+        "created_at": 1556041598475,
+        "updated_at": 1556041598497
+    },
+    "users": []
+}

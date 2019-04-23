@@ -59,16 +59,22 @@ header {
     margin: 20px auto;
     display: flex;
     flex-wrap: wrap;
+    align-items: flex-start;
 }
 
 .product {
     background-color: #fff;
     border-radius: 10px;
-    border: 1px solid currentColor;
     color: $color_secondary;
+    box-shadow: 0px 3px 5px 1px $color_secondary;
     overflow: hidden;
     position: relative;
     margin: 2em auto;
+    transition: box-shadow 0.2s ease-in;
+
+    &:hover {
+        box-shadow: 0px 6px 14px 1px $color_secondary;
+    }
 
     &.sold {
         pointer-events: none;
@@ -125,8 +131,26 @@ header {
         }
     }
 
-    @include element('name') {
+    @include element('details') {
         padding: 0.4em;
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+    }
+
+    @include element('price') {
+        display: flex;
+        font-size: 1.3em;
+        color: $color_accent_secondary;
+
+        &:before {
+            content: 'R$ ';
+            display: block;
+            margin-right: 0.2em;
+        }
+    }
+
+    @include element('name') {
         font-size: 1.2em;
     }
 
@@ -135,13 +159,13 @@ header {
         display: flex;
         justify-content: space-evenly;
         background-color: #fff;
+        padding: 0;
+        width: 100%;
         @include for-desktop-up {
-            padding: 0;
             height: 100%;
             transform: translateY(100%);
             transition: transform 0.2s ease-in-out;
             position: absolute;
-            width: 100%;
             opacity: 0.7;
             height: 20%;
             align-items: center;
@@ -166,17 +190,14 @@ header {
             text-transform: uppercase;
             transition: opacity 0.1s ease-in-out;
             opacity: 0.8;
-            flex-grow: 0;
             padding: 1em;
             background-color: $color_ml;
-
-            @include for-desktop-up {
-                flex-grow: 1;
-                height: 100%;
-                border-radius: 0;
-            }
+            flex-grow: 1;
+            height: 100%;
+            border-radius: 0;
 
             .svg-inline--fa {
+                margin-left: 0.5em;
                 margin-right: 0.5em;
             }
 

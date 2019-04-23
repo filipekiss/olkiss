@@ -1,0 +1,25 @@
+{
+    "id": 3,
+    "title": "C\u00f4moda Madri Com Espelho Santos Andir\u00e1 ",
+    "url": "https://produto.mercadolivre.com.br/MLB-1217216763-cmoda-madri-com-espelho-santos-andira-_JM?quantity=1&variation=35734209311",
+    "description": null,
+    "price": 50000,
+    "sold": null,
+    "created_at": 1556041574673,
+    "updated_at": 1556041574732,
+    "image": {
+        "id": 3,
+        "name": "cmoda-madri-com-espelho-santos-andira-D_NQ_NP_653537-MLB30047886890_042019-F.jpg",
+        "hash": "76bacc1b86e6473b9e141c8c6c288c8c",
+        "sha256": "dAKAE2obBNJPGc2nwHliVcIyJoxosga9O5cEin3jSa4",
+        "ext": ".jpg",
+        "mime": "image/jpeg",
+        "size": "180.72",
+        "url": "/uploads/76bacc1b86e6473b9e141c8c6c288c8c.jpg",
+        "provider": "local",
+        "public_id": null,
+        "created_at": 1556041574808,
+        "updated_at": 1556041574855
+    },
+    "users": []
+}

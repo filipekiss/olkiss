@@ -1,34 +1,63 @@
 import * as React from 'react';
 import ReactDOM from 'react-dom';
 import Product from './components/Product';
-import axios from 'axios';
 import settings from '../data/settings';
 import noImage from '../images/no-image.png';
 
-function renderProduct(product, index) {
-    if (this.isFallback) {
-        product.image.url = noImage;
-    } else {
-        product.image.url = `${settings.strapiUrl}/${product.image.url}`;
-    }
+export type Image = {
+    id: number;
+    name: string;
+    hash: string;
+    sha256: string;
+    ext: string;
+    mime: string;
+    size: string;
+    url: string;
+    provider: string;
+    public_id?: any;
+    created_at: number;
+    updated_at: number;
+};
+
+export type User = {
+    id: number;
+    username: string;
+    email: string;
+    provider: string;
+    confirmed: number;
+    blocked?: any;
+    role: number;
+    product: number;
+};
+
+export type Product = {
+    id: number;
+    title: string;
+    url: string;
+    description: string;
+    price: number;
+    sold?: any;
+    created_at: number;
+    updated_at: number;
+    image: Image;
+    users: User[];
+};
+
+export type ProductsResponse = {
+    data: Product[];
+};
+
+export type ProductsFallback = {
+    default: ProductsResponse;
+};
+
+function renderProduct(product: Product, index: number) {
     return <Product key={`product-${index}`} product={product} />;
 }
 
 const targetElement = document.getElementById('app');
 
-axios
-    .get(`${settings.strapiUrl}/products`, {timeout: 2500})
-    .then(function loadProducts(response) {
-        const app = response.data.map(renderProduct, {isFallback: false});
-        ReactDOM.render(app, targetElement);
-    })
-    .catch(function(error) {
-        console.error(
-            'An error ocurred when trying to fetch the product list from ${strapiUrl}'
-        );
-        console.warn('Falling back to static data');
-        import('../data/products.json').then((products) => {
-            const app = products.default.map(renderProduct, {isFallback: true});
-            ReactDOM.render(app, targetElement);
-        });
-    });
+import('../data/products.json').then((products: ProductsFallback) => {
+    const app = products.default.map(renderProduct, {isFallback: true});
+    ReactDOM.render(app, targetElement);
+});
