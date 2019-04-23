@@ -31,23 +31,16 @@ export default function Product(props) {
     const {product} = props;
 
     const productClass = classNames('product', {
-        sold: product.sold,
+        ['product--sold']: product.sold,
     });
-
-    let sold = '';
-
-    if (product.sold) {
-        sold = <img className="sold-stamp" src={soldImage} />;
-    }
 
     const imageUrl = `${product.image.url}`;
 
     return (
         <div className={productClass}>
-            <div className="info">
+            <div className="product__info">
                 <div className="product__image">
                     <img className="image" src={imageUrl} alt={product.title} />
-                    {sold}
                 </div>
                 <div className="product__details">
                     <div className="product__name">{product.title}</div>

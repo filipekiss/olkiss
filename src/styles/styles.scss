@@ -62,7 +62,7 @@ header {
     align-items: flex-start;
 }
 
-.product {
+@include block('product') {
     background-color: #fff;
     border-radius: 10px;
     color: $color_secondary;
@@ -74,10 +74,6 @@ header {
 
     &:hover {
         box-shadow: 0px 6px 14px 1px $color_secondary;
-    }
-
-    &.sold {
-        pointer-events: none;
     }
 
     @include for-tablet-landscape-up {
@@ -115,24 +111,22 @@ header {
     }
 
     @include element('image') {
-        > img.image {
+        & > img.image {
             max-width: 100%;
             object-fit: cover;
-            .sold & {
-                opacity: 0.6;
-            }
         }
         .sold-stamp {
+            left: 50%;
+            max-width: 95%;
             opacity: 1;
             position: absolute;
-            left: 0;
-            top: 0;
-            max-width: 100%;
+            top: 50%;
+            transform: translate(-50%, -50%);
         }
     }
 
     @include element('details') {
-        padding: 0.4em;
+        padding: 2em 1.4em;
         display: flex;
         align-items: center;
         justify-content: space-between;
@@ -163,16 +157,15 @@ header {
         width: 100%;
         @include for-desktop-up {
             height: 100%;
-            transform: translateY(100%);
-            transition: transform 0.2s ease-in-out;
+            transition: opacity 0.2s ease-in-out;
             position: absolute;
-            opacity: 0.7;
-            height: 20%;
+            opacity: 0;
             align-items: center;
-
+            top: 0;
+            pointer-events: none;
             .product:hover & {
-                transform: translateY(-100%);
-                opacity: 1;
+                opacity: 0.8;
+                pointer-events: all;
             }
         }
 
@@ -188,8 +181,6 @@ header {
             justify-content: center;
             align-items: center;
             text-transform: uppercase;
-            transition: opacity 0.1s ease-in-out;
-            opacity: 0.8;
             padding: 1em;
             background-color: $color_ml;
             flex-grow: 1;
@@ -201,13 +192,43 @@ header {
                 margin-right: 0.5em;
             }
 
-            &:hover {
-                opacity: 1;
-            }
-
             &:last-of-type {
                 margin-right: 0;
             }
+        }
+    }
+
+    // modifiers
+    @include modifier('sold') {
+        pointer-events: none;
+        position: relative;
+        &:before {
+            background-color: transparentize($color_secondary, 0.4);
+            bottom: 0;
+            content: '';
+            display: block;
+            left: 0;
+            position: absolute;
+            right: 0;
+            top: 0;
+            z-index: 1;
+        }
+
+        &:after {
+            background-color: darken($color_secondary, 20);
+            color: #FFF;
+            content: 'VENDIDO';
+            display: block;
+            font-size: 4em;
+            font-weight: 700;
+            left: 50%;
+            padding: 0.4em;
+            position: absolute;
+            text-align: center;
+            top: 50%;
+            transform: translate(-50%, -50%) rotate(-30deg);
+            width: 125%;
+            z-index: 1;
         }
     }
 }
