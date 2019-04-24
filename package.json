@@ -6,7 +6,9 @@
         "test": "echo \"Error: no test specified\" && exit 1",
         "products:generate": "ts-node scripts/generate-products-index.ts",
         "dev": "parcel src/index.html",
-        "build": "npm run products:generate && rm -rf public && parcel build src/index.html --out-dir public"
+        "build": "npm run products:generate && rm -rf public && parcel build src/index.html --out-dir public",
+        "deploy:only": "rsync -rpltDv --delete public/ root@olkiss.shop:/var/www/olkiss.shop/",
+        "deploy": "npm run build && npm run deploy:only"
     },
     "repository": {
         "type": "git",
