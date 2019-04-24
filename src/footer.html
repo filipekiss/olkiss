@@ -1,3 +1,24 @@
 <footer>
     Created with ❤ by <a href="https://github.com/filipekiss">@filipekiss</a>
 </footer>
+<script>
+    /**
+     * Função que acompanha um clique em um link externo no Analytics.
+     * Essa função processa uma string de URL válida como um argumento e usa essa string de URL
+     * como o rótulo do evento. Ao definir o método de transporte como 'beacon', o hit é enviado
+     * usando 'navigator.sendBeacon' em um navegador compatível.
+     */
+    var trackOutboundLink = function(event) {
+        var url = event.currentTarget.getAttribute('href');
+        gtag('event', 'click', {
+            event_category: 'mercadolivre',
+            event_label: url,
+            value: 1,
+        });
+    };
+    document
+        .querySelectorAll('.product__links a')
+        .forEach(function trackExternalClick(element) {
+            element.addEventListener('click', trackOutboundLink);
+        });
+</script>
