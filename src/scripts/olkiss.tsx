@@ -3,6 +3,10 @@ import ReactDOM from 'react-dom';
 import Product from './components/Product';
 import settings from '../data/settings';
 import noImage from '../images/no-image.png';
+import axios from 'axios';
+import * as dotenv from 'dotenv';
+
+dotenv.config();
 
 export type Image = {
     id: number;
@@ -57,7 +61,8 @@ function renderProduct(product: Product, index: number) {
 
 const targetElement = document.getElementById('app');
 
-import('../data/products.json').then((products: ProductsFallback) => {
-    const app = products.default.map(renderProduct, {isFallback: true});
+axios.get(`${process.env.API_URL}/products`).then((response) => {
+    const products = response.data;
+    const app = products.map(renderProduct, {isFallback: true});
     ReactDOM.render(app, targetElement);
 });

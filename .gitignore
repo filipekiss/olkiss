@@ -2,3 +2,5 @@ dist
 .cache
 public
 src/data/products.json
+.env
+.env.*

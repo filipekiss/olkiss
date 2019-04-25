@@ -34,7 +34,7 @@ export default function Product(props) {
         ['product--sold']: product.sold,
     });
 
-    const imageUrl = `${product.image.url}`;
+    const imageUrl = `${product.image}`;
 
     return (
         <div className={productClass}>
