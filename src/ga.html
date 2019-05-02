@@ -10,6 +10,6 @@
     };
     window.gtag('js', new Date());
 
-    window.gtag('config', 'UA-139009123-1');
+    window.gtag('config', process.env.GA_PROPERTY);
     window.gtag('config', 'GA_MEASUREMENT_ID', {transport_type: 'beacon'});
 </script>
