@@ -7,8 +7,9 @@
         "products:generate": "ts-node scripts/generate-products-index.ts",
         "dev": "parcel src/index.html",
         "build": "npm run products:generate && rm -rf public && parcel build src/index.html --out-dir public",
+        "build:production": "NODE_ENV=production npm run products:generate && rm -rf public && parcel build src/index.html --out-dir public",
         "deploy:only": "rsync -rpltDv --delete public/ root@olkiss.shop:/var/www/olkiss.shop/",
-        "deploy": "NODE_ENV=production npm run build && npm run deploy:only"
+        "deploy": "npm run build:production && npm run deploy:only"
     },
     "repository": {
         "type": "git",

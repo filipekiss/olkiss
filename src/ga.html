@@ -5,11 +5,11 @@
 ></script>
 <script>
     window.dataLayer = window.dataLayer || [];
-    function gtag() {
+    window.gtag = function() {
         dataLayer.push(arguments);
-    }
-    gtag('js', new Date());
+    };
+    window.gtag('js', new Date());
 
-    gtag('config', 'UA-139009123-1');
-    gtag('config', 'GA_MEASUREMENT_ID', { 'transport_type': 'beacon'});
+    window.gtag('config', 'UA-139009123-1');
+    window.gtag('config', 'GA_MEASUREMENT_ID', {transport_type: 'beacon'});
 </script>

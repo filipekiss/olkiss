@@ -10,7 +10,7 @@
      */
     var trackOutboundLink = function(event) {
         var productName = event.currentTarget.getAttribute('data-product-name');
-        gtag('event', 'click', {
+        window.gtag('event', 'click', {
             event_category: 'mercadolivre',
             event_label: productName,
             value: 1,
