@@ -9,10 +9,10 @@
      * usando 'navigator.sendBeacon' em um navegador compatível.
      */
     var trackOutboundLink = function(event) {
-        var url = event.currentTarget.getAttribute('href');
+        var productName = event.currentTarget.getAttribute('data-product-name');
         gtag('event', 'click', {
             event_category: 'mercadolivre',
-            event_label: url,
+            event_label: productName,
             value: 1,
         });
     };
