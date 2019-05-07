@@ -1,15 +1,28 @@
 import * as React from 'react';
 import classNames from '@sindresorhus/class-names';
-import soldImage from '../../images/vendido.png';
 
 const outButton = (link, productName, disabled = false) => {
     const key = Math.random();
+    console.log(link);
     const buttonClass = classNames({
+
         disabled: disabled,
-    });
+    }, link.type);
+    const buttoninfo: {
+        text?: string;
+        icon?: string;
+    } = {};
+    if (link.type === 'mercadolivre') {
+        buttoninfo.text = "Ver no Mercado Livre"
+        buttoninfo.icon = "fas fa-hands-helping"
+    } else {
+        buttoninfo.text = "Perguntar no Whatsapp"
+        buttoninfo.icon = "fab fa-whatsapp"
+        link.url = "https://api.whatsapp.com/send?phone=5511950790290&text=Oi!%20Vi%20o%20produto%20%22"+encodeURIComponent(productName)+"%22%20no%20OLKiss%20e%20gostaria%20de%20mais%20informa%C3%A7%C3%B5es."
+    }
     return (
-        <a key={key} href={link} className={buttonClass} data-product-name={productName} target="_blank" rel="noopener noreferrer" title="Abre numa nova aba">
-            <i className="fas fa-hands-helping" /> Ver no Mercado Livre <i className="fas fa-external-link-alt"></i>
+        <a key={key} href={link.url} className={buttonClass} data-product-name={productName} target="_blank" rel="noopener noreferrer" title="Abre numa nova aba">
+            <i className={buttoninfo.icon} /> {buttoninfo.text} <i className="fas fa-external-link-alt"></i>
         </a>
     );
 };
@@ -48,7 +61,7 @@ export default function Product(props) {
                 </div>
             </div>
             <div className="product__links">
-                {outButton(product.url, product.title, product.sold)}
+                {outButton({url: product.url, type: product.type}, product.title, product.sold)}
             </div>
         </div>
     );
