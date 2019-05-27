@@ -15,10 +15,18 @@ const outButton = (link, productName, disabled = false) => {
     if (link.type === 'mercadolivre') {
         buttoninfo.text = "Ver no Mercado Livre"
         buttoninfo.icon = "fas fa-hands-helping"
-    } else {
+
+    } else if (link.type === 'webmotors') {
+        buttoninfo.text = "Ver no WebMotors"
+        buttoninfo.icon = "fas fa-car-side"
+    } else if (link.type === 'whatsappFilipe') {
         buttoninfo.text = "Perguntar no Whatsapp"
         buttoninfo.icon = "fab fa-whatsapp"
         link.url = "https://api.whatsapp.com/send?phone=5511950790290&text=Oi!%20Vi%20o%20produto%20%22"+encodeURIComponent(productName)+"%22%20no%20OLKiss%20e%20gostaria%20de%20mais%20informa%C3%A7%C3%B5es."
+    } else {
+        buttoninfo.text = "Perguntar no Whatsapp"
+        buttoninfo.icon = "fab fa-whatsapp"
+        link.url = "https://api.whatsapp.com/send?phone=5511998800912&text=Oi!%20Vi%20o%20produto%20%22"+encodeURIComponent(productName)+"%22%20no%20OLKiss%20e%20gostaria%20de%20mais%20informa%C3%A7%C3%B5es."
     }
     return (
         <a key={key} href={link.url} className={buttonClass} data-product-name={productName} target="_blank" rel="noopener noreferrer" title="Abre numa nova aba">
