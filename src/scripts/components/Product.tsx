@@ -3,9 +3,7 @@ import classNames from '@sindresorhus/class-names';
 
 const outButton = (link, productName, disabled = false) => {
     const key = Math.random();
-    console.log(link);
-    const buttonClass = classNames({
-
+    let buttonClass = classNames({
         disabled: disabled,
     }, link.type);
     const buttoninfo: {
@@ -20,6 +18,9 @@ const outButton = (link, productName, disabled = false) => {
         buttoninfo.text = "Ver no WebMotors"
         buttoninfo.icon = "fas fa-car-side"
     } else if (link.type === 'whatsappFilipe') {
+        buttonClass = classNames({
+          disabled: disabled
+        }, 'whatsapp');
         buttoninfo.text = "Perguntar no Whatsapp"
         buttoninfo.icon = "fab fa-whatsapp"
         link.url = "https://api.whatsapp.com/send?phone=5511950790290&text=Oi!%20Vi%20o%20produto%20%22"+encodeURIComponent(productName)+"%22%20no%20OLKiss%20e%20gostaria%20de%20mais%20informa%C3%A7%C3%B5es."
